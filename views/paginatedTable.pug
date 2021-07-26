@@ -1,0 +1,47 @@
+html
+head 
+  link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
+  style  
+    include ../public/style.css
+
+body
+h1 Movies
+table
+  thead
+    tr
+      th Title
+      th Description
+      th Category
+      th Length
+      th Rating 
+      th Actors
+  tbody
+    each dat in data
+      tr
+
+        td  #{dat.title}
+        td  #{dat.description}
+        td  #{dat.category}
+        td  #{dat.length}
+        td  #{dat.rating}
+        td  #{dat.actors}
+
+if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
+.navigation.well-sm#pagination
+  ul.pager
+    if paginate.hasPreviousPages
+      a(href=paginate.href(true)).prev
+        i.fa.fa-arrow-circle-left
+        |  Previous
+    if pages
+      each page in pages
+        a.btn.btn-default(href=page.url)= page.number
+    if paginate.hasNextPages(pageCount)
+      a(href=paginate.href()).next
+        | Next&nbsp;
+        i.fa.fa-arrow-circle-right
+
+  script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
+  script(src='https://getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js')
+
+
